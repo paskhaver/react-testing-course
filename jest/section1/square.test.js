@@ -1,16 +1,17 @@
-// The require function accepts a string as an argument
-// The string should be the relative path to the file being imported
 const square = require('./square');
 
-// If the string does not have a relative path (./ or ../),
-// JavaScript will assume the import is a Node module / package
-// array-equal is a sample dependency in node_modules directory
-const equals = require('array-equal');
+describe('toBeUndefined and toBeDefined', () => {
+  it('should offer a shortcut for comparing to undefined', () => {
+    const user = {
+      name: 'Boris',
+    };
+    const { name, age } = user;
+    expect(age).toBe(undefined);
+    expect(age).toBeUndefined();
 
-describe('square function', () => {
-  it('should return the square of its input', () => {
-    expect(square(5)).toBe(25);
-    expect(square(10)).toBe(100);
-    expect(square(-2)).toBe(4);
+    // Not checking the exact value of name, only that it exists
+    // The variable's value is proof the property exists on user object
+    expect(name).toBeDefined();
+    expect(age).not.toBeDefined();
   });
 });
